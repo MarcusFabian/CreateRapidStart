@@ -1,27 +1,28 @@
 {
-    "id":  "fff53155-9977-4104-aff7-0c5397916264",
-    "name":  "Create Rapidstart",
-    "publisher":  "Marcus Fabian",
-    "brief":  "Create Rapidstart Package for all tables",
-    "description":  "",
-    "version":  "1.0.0.0",
-    "privacyStatement":  "",
-    "EULA":  "",
-    "help":  "",
-    "url":  "",
-    "contextSensitiveHelpUrl":  "https://github.com/MarcusFabian/SWIFT_from_IBAN/",
-    "logo":  "",
-    "dependencies":  [ ],
-    "internalsVisibleTo":  [],
-    "screenshots":  [ ],
-    "platform":  "1.0.0.0",
-    "application":  "1.0.0.0",
-    "idRanges":  [
-                     {
-                         "from":  70000,
-                         "to":  70002
-                     }
-                 ],
-    "showMyCode":  true,
+    "id": "fff53155-9977-4104-aff7-0c5397916264",
+    "name": "Create Rapidstart",
+    "publisher": "Marcus Fabian",
+    "brief": "Create Rapidstart Package for all tables",
+    "description": "",
+    "version": "1.0.0.0",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "contextSensitiveHelpUrl": "https://github.com/MarcusFabian/SWIFT_from_IBAN/",
+    "logo": "",
+    "dependencies": [],
+    "internalsVisibleTo": [],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+    "application": "1.0.0.0",
+    "idRanges": [
+        {
+            "from": 70000,
+            "to": 70002
+        }
+    ],
+    "showMyCode": true,
+    "target": "Cloud",
     "runtime": "5.3"
 }
