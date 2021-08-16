@@ -10,8 +10,12 @@ codeunit 70000 "Create Rapidstart All"
     local procedure TableToExclude(ID: Integer): Boolean;
     begin
         if ID = 405 THEN EXIT(TRUE); // Change log Entry
+        if ID = 1173 THEN EXIT(TRUE); // Document Attachment
+        if ID = 1803 THEN EXIT(TRUE); // Assisted Setup
+        IF ID = 8613 THEN EXIT(TRUE);  // Config. Package Table
         IF ID = 8614 THEN EXIT(TRUE);  // Config. Package Record
         IF ID = 8615 THEN EXIT(TRUE);  // Config. Package Data
+        IF ID = 8616 THEN EXIT(TRUE);  // Config. Package Field
         IF ID = 8617 THEN EXIT(TRUE);  // Config. Package Error
         IF ID = 2190 THEN EXIT(TRUE);  // O365 Sales Graph
         IF ID = 5450 THEN EXIT(TRUE);  // Graph Contact
