@@ -12,6 +12,7 @@ codeunit 70000 "Create Rapidstart All"
         if ID = 405 THEN EXIT(TRUE); // Change log Entry
         if ID = 1173 THEN EXIT(TRUE); // Document Attachment
         if ID = 1803 THEN EXIT(TRUE); // Assisted Setup
+        if ID = 1810 THEN EXIT(TRUE); // Assisted Setup
         IF ID = 8613 THEN EXIT(TRUE);  // Config. Package Table
         IF ID = 8614 THEN EXIT(TRUE);  // Config. Package Record
         IF ID = 8615 THEN EXIT(TRUE);  // Config. Package Data

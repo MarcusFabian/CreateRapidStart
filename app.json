@@ -4,7 +4,7 @@
     "publisher": "Marcus Fabian",
     "brief": "Create Rapidstart Package for all tables",
     "description": "",
-    "version": "1.0.0.1",
+    "version": "1.0.0.13",
     "privacyStatement": "",
     "EULA": "",
     "help": "",
@@ -40,91 +40,13 @@
             "id": "be167a22-6665-408f-baa6-3df197d0de7c",
             "publisher": "EOS Solutions",
             "name": "Advanced Logistic Common Library",
-            "version": "18.0.228.0"
-        },
-        {
-            "id": "0FB12C8A-6C9E-407F-BB0E-9FEE792EE665",
-            "publisher": "EOS Solutions",
-            "name": "Product Configurator",
-            "version": "18.0.44.0"
-        },
-        {
-            "id": "A1DAF9D7-D09C-4919-9685-9705B6F17EC7",
-            "publisher": "EOS Solutions",
-            "name": "Trade common data layer",
-            "version": "18.0.12.0"
-        },
-        {
-            "id": "4E2A89A2-9049-496C-8B3A-F4EEE6399B0E",
-            "publisher": "EOS Solutions",
-            "name": "Common Data Layer",
-            "version": "18.0.34.0"
-        },
-        {
-            "id": "D3F057ED-E131-4DC6-A1B9-3AF3503A5D2A",
-            "publisher": "EOS Solutions",
-            "name": "Data Security",
-            "version": "18.0.25.0"
-        },
-        {
-            "id": "7B5948A7-BAA0-46FA-981D-CC17CAB84143",
-            "publisher": "EOS Solutions",
-            "name": "Logistic Common Data Layer",
-            "version": "18.0.8.0"
-        },
-        {
-            "id": "1ED76016-B288-401C-92E1-75B2D47FF222",
-            "publisher": "EOS Solutions",
-            "name": "Posted Data Administration Tool",
-            "version": "18.0.2.0"
-        },
-        {
-            "id": "9f4ce2e6-5bfa-4c10-a611-972207096156",
-            "publisher": "EOS Solutions",
-            "name": "Over- and Under-Delivery Quantities",
-            "version": "18.0.22.0"
-        },
-        {
-            "id": "3F5B43BF-7907-4D4C-A140-5D6F4EAB9EAD",
-            "publisher": "EOS Solutions",
-            "name": "Analytics Library",
-            "version": "18.0.3.0"
-        },
-        {
-            "id": "F6054AB6-161A-4D34-8145-24C72DCE4CE3",
-            "publisher": "EOS Solutions",
-            "name": "Handling Units Management",
-            "version": "18.0.4.0"
-        },
-        {
-            "id": "46acfe78-03ea-46d7-8d56-1e8c74b5c682",
-            "publisher": "EOS Solutions",
-            "name": "Close Documents without Invoicing",
-            "version": "18.0.12.0"
-        },
-        {
-            "id": "5c4e78c2-7a6a-4822-b58c-812a92792b9b",
-            "publisher": "EOS Solutions",
-            "name": "Transport Costs",
-            "version": "18.0.13.0"
-        },
-        {
-            "id": "b2dd1d81-3e95-46a8-94ef-8c32d872bf0c",
-            "publisher": "EOS Solutions",
-            "name": "Advanced Document Reporting",
-            "version": "18.0.52.0"
-        },
-        {
-            "id": "14a1ff65-76de-4f24-81ec-43da6939e733",
-            "publisher": "EOS Solutions",
-            "name": "Product Quality Assurance",
-            "version": "18.0.10.0"
+            "version": "18.0.244.0"
         },
         {
             "id": "0a72022f-8c0b-4538-a518-fccef8769040",
             "publisher": "Iseppi Frutta",
-            "name": "Iseppi Individuelle Anpassungen",
-            "version": "18.0.3.11"
+            "name": "Iseppi Base",
+            "version": "18.0.3.21"
         }
     ],
     "internalsVisibleTo": [],
