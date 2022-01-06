@@ -90,9 +90,9 @@ codeunit 70000 "Create Rapidstart All"
         ConfigPackage.INIT;
         ConfigPackage.Code := PackageName;
         If WithDataOnly then
-            ConfigPackage."Package Name" := 'All Tables, empty or not'
+            ConfigPackage."Package Name" := 'All Tables with entries'
         else
-            ConfigPackage."Package Name" := 'All Tables with entries';
+            ConfigPackage."Package Name" := 'All Tables, empty or not';
         ConfigPackage."Language ID" := 2055;
         ConfigPackage."Product Version" := FORMAT(WORKDATE);
         ConfigPackage."Exclude Config. Tables" := FALSE;
