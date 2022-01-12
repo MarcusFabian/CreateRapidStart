@@ -76,8 +76,8 @@ codeunit 70000 "Create Rapidstart All"
                 IF NOT TableToExclude(Object."Object ID") THEN BEGIN
                     dlg.UPDATE(1, Object."Object ID");
                     rRef.OPEN(Object."Object ID");
-                    // Only Process Tables with Data
-                    IF rRef.COUNT > 0 THEN BEGIN
+                    // Only Process Tables with Data?
+                    if true then begin //IF rRef.COUNT > 0 THEN BEGIN
                         gTableCounter += 1;
                         //MESSAGE ('Opened Table %1 %2',Object.ID,Object.Name);
                         ConfigLine.INIT;

@@ -8,3 +8,7 @@ Purpose is a quick-and-dirty save/restore of company-data for developers who suf
 
 The Package is defined in a way that all table- and field-triggers are avoided: "Dirt out --> Dirt in"
 
+##Changes
+### V1.0.0.2
+Create Entries for all Tables witin range and not only for Tables with data.
+Reason is that we want to be able to create the package on an empty Company as well.
