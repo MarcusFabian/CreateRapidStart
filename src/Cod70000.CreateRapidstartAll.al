@@ -4,12 +4,44 @@ codeunit 70000 "Create Rapidstart All"
 
     trigger OnInstallAppPerCompany()
     begin
-        DoCreateRapidStartAll('_ALLDATA');
+        // DoCreateRapidStartAll('_ALLDATA');
     end;
 
     local procedure TableToExclude(ID: Integer): Boolean;
+    var
+        TableMetadata: Record "Table Metadata";
     begin
+        if TableMetadata.Get(ID) then
+            if TableMetadata.TableType <> TableMetadata.TableType::Normal then
+                Exit(true);
+        if ID = 55 THEN EXIT(TRUE); // 
+        if ID = 56 THEN EXIT(TRUE); // 
+        if ID = 265 THEN EXIT(TRUE); // Document Entry
+        if ID = 338 THEN EXIT(TRUE); // Entry summary
+        if ID = 385 THEN EXIT(TRUE); // 
         if ID = 405 THEN EXIT(TRUE); // Change log Entry
+        if ID = 486 THEN EXIT(TRUE); // Business Chart Map
+        if ID = 487 THEN EXIT(TRUE); // Business Chart User Setup
+        if ID = 491 THEN EXIT(TRUE); // Parallel Session Entry
+        if ID = 520 THEN EXIT(TRUE); // Available Info. Buffer
+        if ID = 1432 THEN EXIT(TRUE); // 
+        if ID = 1461 THEN EXIT(TRUE); // 
+        if ID = 1570 THEN EXIT(TRUE); // 
+        if ID = 1571 THEN EXIT(TRUE); // 
+        if ID = 1670 THEN EXIT(TRUE); // 
+        if ID = 1754 THEN EXIT(TRUE); // 
+        if ID = 1876 THEN EXIT(TRUE); // 
+        if ID = 1997 THEN EXIT(TRUE); // 
+        if ID = 3712 THEN EXIT(TRUE); // 
+        if ID = 3893 THEN EXIT(TRUE); // 
+        if ID = 3903 THEN EXIT(TRUE); // 
+        if ID = 3905 THEN EXIT(TRUE); // 
+        if ID = 8703 THEN EXIT(TRUE); // 
+        if ID = 9004 THEN EXIT(TRUE); // 
+        if ID = 9005 THEN EXIT(TRUE); // 
+        if ID = 9008 THEN EXIT(TRUE); // 
+        if ID = 9173 THEN EXIT(TRUE); // 
+        if ID = 9999 THEN EXIT(TRUE); // 
         if ID = 1173 THEN EXIT(TRUE); // Document Attachment
         if ID = 1803 THEN EXIT(TRUE); // Assisted Setup
         if ID = 1810 THEN EXIT(TRUE); // Assisted Setup
@@ -38,7 +70,7 @@ codeunit 70000 "Create Rapidstart All"
 
     end;
 
-    procedure DoCreateRapidStartAll(PackageName: Code[20])
+    procedure DoCreateRapidStartAll(PackageName: Code[20]; WithDataOnly: Boolean)
     var
         ConfigPackage: Record "Config. Package";
         ConfigLine: Record "Config. Package Table";
@@ -58,7 +90,10 @@ codeunit 70000 "Create Rapidstart All"
         ConfigPackage.RESET();
         ConfigPackage.INIT;
         ConfigPackage.Code := PackageName;
-        ConfigPackage."Package Name" := 'Alle Daten inkl. Bewegungsdaten';
+        If WithDataOnly then
+            ConfigPackage."Package Name" := 'All Tables with entries'
+        else
+            ConfigPackage."Package Name" := 'All Tables, empty or not';
         ConfigPackage."Language ID" := 2055;
         ConfigPackage."Product Version" := FORMAT(WORKDATE);
         ConfigPackage."Exclude Config. Tables" := FALSE;
@@ -68,7 +103,7 @@ codeunit 70000 "Create Rapidstart All"
         ConfigLine.SETRANGE("Package Code", PackageName);
         ConfigLine."Package Code" := PackageName;
         TableIDFilter := '..5339|5400..2000000000';
-        //TableIDFilter := '3';  // Test
+        // TableIDFilter := '1461..';  // Test
         Object.SETRANGE("Object Type", Object."Object Type"::Table);
         Object.SETFILTER("Object ID", TableIDFilter);
         IF Object.FINDSET(FALSE, FALSE) THEN
@@ -77,7 +112,7 @@ codeunit 70000 "Create Rapidstart All"
                     dlg.UPDATE(1, Object."Object ID");
                     rRef.OPEN(Object."Object ID");
                     // Only Process Tables with Data?
-                    if true then begin //IF rRef.COUNT > 0 THEN BEGIN
+                    if (rRef.COUNT > 0) or (Not WithDataOnly) THEN BEGIN
                         gTableCounter += 1;
                         //MESSAGE ('Opened Table %1 %2',Object.ID,Object.Name);
                         ConfigLine.INIT;

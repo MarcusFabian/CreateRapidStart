@@ -1,14 +1,19 @@
 # CreateRapidStart
-Creates a Rapid Start Package for basically all records and fields within the application.
+Purpose is a quick-and-dirty save/restore of all company-data for developers who suffer the lack of stability in their containers/sandboxes.
+
+Creates a Rapid Start Package _ALLDATA for basically all records and fields within the application.
 Exceptions are some tables as defined in Cu 70000.TableToExclude()
 
-The Codeunit is run automatically on installation of the app and creates a package "_ALLDATA"
-
-Purpose is a quick-and-dirty save/restore of company-data for developers who suffer the lack of stability in their containers/sandboxes.
+The Codeunit can be run via page "Create AllData Rapid Start" and creates a package "_ALLDATA", containing either all Tables or all Tables with data.
 
 The Package is defined in a way that all table- and field-triggers are avoided: "Dirt out --> Dirt in"
 
-##Changes
-### V1.0.0.2
-Create Entries for all Tables witin range and not only for Tables with data.
-Reason is that we want to be able to create the package on an empty Company as well.
+## Recommended use
+Naturally, you want to use this app if all Extensions (which might create data) are installed.
+I recommend to run the app in debugging mode if you have customer apps installed as you might run into issues if user-apps contain tables which are not accessible
+or not useable within Rapid-Start.
+You migth then add failed tables in Codeunit 70000 to procedure TableToExclude()
+
+## Changes
+
+
