@@ -67,3 +67,5 @@ SharedAppData/.alpackages/*.app
 .vscode/.alcache/*.json
 
 launch.json
+.vscode/extensions.json
+.devcontainer/devcontainer.json
