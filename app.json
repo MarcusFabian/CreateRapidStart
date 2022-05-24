@@ -4,7 +4,7 @@
     "publisher": "Marcus Fabian",
     "brief": "Create Rapidstart Package for all tables",
     "description": "",
-    "version": "1.0.0.4",
+    "version": "20.0.3.0",
     "privacyStatement": "",
     "EULA": "",
     "help": "",
@@ -14,14 +14,18 @@
     "dependencies": [],
     "internalsVisibleTo": [],
     "screenshots": [],
-    "platform": "1.0.0.0",
-    "application": "1.0.0.0",
+    "platform": "20.0.0.0",
+    "application": "20.0.0.0",
     "idRanges": [
         {
             "from": 70000,
             "to": 70002
         }
     ],
-    "showMyCode": true,
-    "runtime": "5.3"
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": true,
+        "includeSourceInSymbolFile": true
+    },
+    "runtime": "9.0"
 }

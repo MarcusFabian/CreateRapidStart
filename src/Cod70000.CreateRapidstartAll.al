@@ -14,34 +14,13 @@ codeunit 70000 "Create Rapidstart All"
         if TableMetadata.Get(ID) then
             if TableMetadata.TableType <> TableMetadata.TableType::Normal then
                 Exit(true);
-        if ID = 55 THEN EXIT(TRUE); // 
-        if ID = 56 THEN EXIT(TRUE); // 
         if ID = 265 THEN EXIT(TRUE); // Document Entry
         if ID = 338 THEN EXIT(TRUE); // Entry summary
-        if ID = 385 THEN EXIT(TRUE); // 
         if ID = 405 THEN EXIT(TRUE); // Change log Entry
         if ID = 486 THEN EXIT(TRUE); // Business Chart Map
         if ID = 487 THEN EXIT(TRUE); // Business Chart User Setup
         if ID = 491 THEN EXIT(TRUE); // Parallel Session Entry
         if ID = 520 THEN EXIT(TRUE); // Available Info. Buffer
-        if ID = 1432 THEN EXIT(TRUE); // 
-        if ID = 1461 THEN EXIT(TRUE); // 
-        if ID = 1570 THEN EXIT(TRUE); // 
-        if ID = 1571 THEN EXIT(TRUE); // 
-        if ID = 1670 THEN EXIT(TRUE); // 
-        if ID = 1754 THEN EXIT(TRUE); // 
-        if ID = 1876 THEN EXIT(TRUE); // 
-        if ID = 1997 THEN EXIT(TRUE); // 
-        if ID = 3712 THEN EXIT(TRUE); // 
-        if ID = 3893 THEN EXIT(TRUE); // 
-        if ID = 3903 THEN EXIT(TRUE); // 
-        if ID = 3905 THEN EXIT(TRUE); // 
-        if ID = 8703 THEN EXIT(TRUE); // 
-        if ID = 9004 THEN EXIT(TRUE); // 
-        if ID = 9005 THEN EXIT(TRUE); // 
-        if ID = 9008 THEN EXIT(TRUE); // 
-        if ID = 9173 THEN EXIT(TRUE); // 
-        if ID = 9999 THEN EXIT(TRUE); // 
         if ID = 1173 THEN EXIT(TRUE); // Document Attachment
         if ID = 1803 THEN EXIT(TRUE); // Assisted Setup
         IF ID = 8613 THEN EXIT(TRUE);  // Config. Package Table
@@ -64,9 +43,7 @@ codeunit 70000 "Create Rapidstart All"
         IF ID = 7860 THEN EXIT(TRUE);  // MS- PayPal Standard Account
         IF ID = 7861 THEN EXIT(TRUE);  // MS- PayPal Standard Template
         IF ID = 7862 THEN EXIT(TRUE);  // MS- PayPal Transaction
-
         EXIT(FALSE);
-
     end;
 
     procedure DoCreateRapidStartAll(PackageName: Code[20]; WithDataOnly: Boolean)
@@ -102,7 +79,6 @@ codeunit 70000 "Create Rapidstart All"
         ConfigLine.SETRANGE("Package Code", PackageName);
         ConfigLine."Package Code" := PackageName;
         TableIDFilter := '..5339|5400..2000000000';
-        // TableIDFilter := '1461..';  // Test
         Object.SETRANGE("Object Type", Object."Object Type"::Table);
         Object.SETFILTER("Object ID", TableIDFilter);
         IF Object.FINDSET(FALSE, FALSE) THEN
@@ -110,41 +86,42 @@ codeunit 70000 "Create Rapidstart All"
                 IF NOT TableToExclude(Object."Object ID") THEN BEGIN
                     dlg.UPDATE(1, Object."Object ID");
                     rRef.OPEN(Object."Object ID");
-                    // Only Process Tables with Data?
-                    if (rRef.COUNT > 0) or (Not WithDataOnly) THEN BEGIN
-                        gTableCounter += 1;
-                        //MESSAGE ('Opened Table %1 %2',Object.ID,Object.Name);
-                        ConfigLine.INIT;
-                        ConfigLine."Table ID" := Object."Object ID";
-                        ConfigLine."Skip Table Triggers" := TRUE;
-                        ConfigLine.INSERT(TRUE);
+                    if rRef.ReadPermission() then begin
+                        // Only Process Tables with Data?
+                        if (rRef.COUNT > 0) or (Not WithDataOnly) THEN BEGIN
+                            gTableCounter += 1;
+                            ConfigLine.INIT;
+                            ConfigLine."Table ID" := Object."Object ID";
+                            ConfigLine."Skip Table Triggers" := TRUE;
+                            ConfigLine.INSERT(TRUE);
 
-                        // Fields
-                        ConfigPackageField.INIT;
-                        ConfigPackageField."Package Code" := ConfigLine."Package Code";
-                        ConfigPackageField."Table ID" := ConfigLine."Table ID";
-                        i := 1;
-                        REPEAT
-                            CLEAR(fRef);
-                            fRef := rRef.FIELDINDEX(i);
-                            IF fRef.ACTIVE THEN BEGIN
-                                gFieldCounter += 1;
-                                ConfigPackageField."Field ID" := fRef.NUMBER;
-                                IF ConfigPackageField.INSERT(FALSE) THEN;
-                                ConfigPackageField."Include Field" := TRUE;
-                                ConfigPackageField."Validate Field" := FALSE;
-                                ConfigPackageField."Processing Order" := i;
-                                ConfigPackageField.MODIFY;
-                            END;
-                            i += 1;
-                        UNTIL (i > rRef.FIELDCOUNT);
-                        COMMIT;
-                    END;  // Count > 0
+                            // Fields
+                            ConfigPackageField.INIT;
+                            ConfigPackageField."Package Code" := ConfigLine."Package Code";
+                            ConfigPackageField."Table ID" := ConfigLine."Table ID";
+                            i := 1;
+                            REPEAT
+                                CLEAR(fRef);
+                                fRef := rRef.FIELDINDEX(i);
+                                IF fRef.ACTIVE THEN BEGIN
+                                    gFieldCounter += 1;
+                                    ConfigPackageField."Field ID" := fRef.NUMBER;
+                                    IF ConfigPackageField.INSERT(FALSE) THEN;
+                                    ConfigPackageField."Include Field" := TRUE;
+                                    ConfigPackageField."Validate Field" := FALSE;
+                                    ConfigPackageField."Processing Order" := i;
+                                    ConfigPackageField.MODIFY;
+                                END;
+                                i += 1;
+                            UNTIL (i > rRef.FIELDCOUNT);
+                            COMMIT;
+                        END;  // Count > 0
+                    end;
                     rRef.CLOSE;
                 END;  // not exclude
             UNTIL Object.NEXT = 0;
         dlg.CLOSE;
-        MESSAGE('Fertig! Total wurden %1 Tabellen und %2 Felder eingefügt', gTableCounter, gFieldCounter);
+        MESSAGE('Done! Added %1 tables, %2 fields', gTableCounter, gFieldCounter);
 
     end;
 }
