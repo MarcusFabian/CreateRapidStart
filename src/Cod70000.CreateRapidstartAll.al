@@ -64,18 +64,18 @@ codeunit 70000 "Create Rapidstart All"
         IF ConfigPackage.GET(PackageName) THEN
             ConfigPackage.DELETE(TRUE);
         ConfigPackage.RESET();
-        ConfigPackage.INIT;
+        ConfigPackage.INIT();
         ConfigPackage.Code := PackageName;
         If WithDataOnly then
             ConfigPackage."Package Name" := 'All Tables with entries'
         else
             ConfigPackage."Package Name" := 'All Tables, empty or not';
         ConfigPackage."Language ID" := 2055;
-        ConfigPackage."Product Version" := FORMAT(WORKDATE);
+        ConfigPackage."Product Version" := FORMAT(WORKDATE());
         ConfigPackage."Exclude Config. Tables" := FALSE;
         ConfigPackage.INSERT(TRUE);
         dlg.OPEN('Table #1##############');
-        ConfigLine.RESET;
+        ConfigLine.RESET();
         ConfigLine.SETRANGE("Package Code", PackageName);
         ConfigLine."Package Code" := PackageName;
         TableIDFilter := '..5339|5400..2000000000';
@@ -90,13 +90,13 @@ codeunit 70000 "Create Rapidstart All"
                         // Only Process Tables with Data?
                         if (rRef.COUNT > 0) or (Not WithDataOnly) THEN BEGIN
                             gTableCounter += 1;
-                            ConfigLine.INIT;
+                            ConfigLine.INIT();
                             ConfigLine."Table ID" := Object."Object ID";
                             ConfigLine."Skip Table Triggers" := TRUE;
                             ConfigLine.INSERT(TRUE);
 
                             // Fields
-                            ConfigPackageField.INIT;
+                            ConfigPackageField.INIT();
                             ConfigPackageField."Package Code" := ConfigLine."Package Code";
                             ConfigPackageField."Table ID" := ConfigLine."Table ID";
                             i := 1;
@@ -110,17 +110,17 @@ codeunit 70000 "Create Rapidstart All"
                                     ConfigPackageField."Include Field" := TRUE;
                                     ConfigPackageField."Validate Field" := FALSE;
                                     ConfigPackageField."Processing Order" := i;
-                                    ConfigPackageField.MODIFY;
+                                    ConfigPackageField.MODIFY();
                                 END;
                                 i += 1;
                             UNTIL (i > rRef.FIELDCOUNT);
-                            COMMIT;
+                            COMMIT();
                         END;  // Count > 0
                     end;
-                    rRef.CLOSE;
+                    rRef.CLOSE();
                 END;  // not exclude
-            UNTIL Object.NEXT = 0;
-        dlg.CLOSE;
+            UNTIL Object.NEXT() = 0;
+        dlg.CLOSE();
         MESSAGE('Done! Added %1 tables, %2 fields', gTableCounter, gFieldCounter);
 
     end;

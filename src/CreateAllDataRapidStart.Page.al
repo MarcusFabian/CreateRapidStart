@@ -40,8 +40,6 @@ page 70000 "Create AllData Rapid Start"
         }
     }
     trigger OnOpenPage()
-    var
-        myInt: Integer;
     begin
         OnlyTableswithData := false;
     end;
